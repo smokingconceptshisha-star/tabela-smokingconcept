@@ -129,6 +129,173 @@
     transform: none;
   }
 }
+  
+.attention-note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  text-align: center;
+  padding: 16px 20px;
+  margin: 30px auto;
+  max-width: 650px;
+
+  color: #8a5a2b;
+  background: rgba(216, 189, 124, 0.12);
+  border: 1px solid #c49a5a;
+  border-radius: 8px;
+
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 13px;
+
+  animation: attentionPulse 2s ease-in-out infinite;
+}
+
+.attention-icon {
+  color: #78862b;
+  font-size: 20px;
+  animation: starGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes attentionPulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 5px rgba(196,154,90,.15);
+  }
+  50% {
+    opacity: .65;
+    box-shadow: 0 0 22px rgba(196,154,90,.55);
+  }
+}
+
+@keyframes starGlow {
+  from { opacity: .4; transform: scale(.9); }
+  to { opacity: 1; transform: scale(1.2); }
+}
+
+/* Animação flutuante dos pacotes */
+.package-card {
+  animation: floatingPackages 4s ease-in-out infinite;
+  transition:
+    transform .4s ease,
+    box-shadow .4s ease,
+    border-color .4s ease;
+}
+
+/* Movimento individual */
+.package-card:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.package-card:nth-child(2) {
+  animation-delay: .7s;
+}
+
+.package-card:nth-child(3) {
+  animation-delay: 1.4s;
+}
+
+@keyframes floatingPackages {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Destaque ao passar o rato */
+.package-card:hover {
+  transform: translateY(-15px) scale(1.025);
+  box-shadow: 0 18px 35px rgba(138,90,43,.25);
+  border-color: #8a5a2b;
+  z-index: 2;
+}
+
+/* Destaque especial para o Premium */
+.package-card.featured {
+  border: 2px solid #8a5a2b;
+  box-shadow: 0 8px 25px rgba(138,90,43,.15);
+}
+
+.package-card {
+  opacity: 0;
+  animation: packageEntrance .9s ease forwards,
+             floatingPackages 4s ease-in-out infinite;
+}
+
+.package-card:nth-child(1) {
+  animation-delay: 0s, 1s;
+}
+
+.package-card:nth-child(2) {
+  animation-delay: .3s, 1.3s;
+}
+
+.package-card:nth-child(3) {
+  animation-delay: .6s, 1.6s;
+}
+
+@keyframes packageEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.package-button {
+  position: relative;
+  overflow: hidden;
+  transition: all .35s ease;
+}
+
+.package-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    transparent,
+    rgba(255,255,255,.35),
+    transparent
+  );
+  transition: left .6s ease;
+}
+
+.package-button:hover::before {
+  left: 100%;
+}
+
+.package-button:hover {
+  background: #8a5a2b;
+  color: #fff9ed;
+  box-shadow: 0 5px 18px rgba(138,90,43,.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .package-card,
+  .attention-note,
+  .attention-icon {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+
+  .package-button,
+  .package-card {
+    transition: none;
+  }
+}
+
 :root{--bg:#f8f0df;--panel:#fff9ed;--gold:#8a5a2b;--gold2:#3e210f;--cream:#3e210f;--muted:#765a42;--line:rgba(104,65,31,.35);--olive:#78862b}
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(ellipse at top,#fff9ec 0,#f8f0df 60%,#eee0c4 100%);color:var(--cream);font-family:Inter,Arial,sans-serif;line-height:1.55}
@@ -307,7 +474,11 @@ h2{font-family:Georgia,serif;text-transform:uppercase;letter-spacing:.13em;text-
     <a class="btn" href="tel:+244949212808">Contactar para pagamento</a>
   </div>
 </section>
-<p class="footer">OBS: EM CASO DE DANIFICAÇÃO DA SHISHA, É COBRADO NO MOMENTO O VALOR DE 60.000 KZ FIXO.</p>
+<div class="attention-note">
+  <span class="attention-icon">✦</span>
+  <span>OBS: EM CASO DE DANIFICAÇÃO DA SHISHA, É COBRADO NO MOMENTO O VALOR DE 60.000 KZ FIXO.</span>
+  <span class="attention-icon">✦</span>
+</div>
 <p class="smallprint"></p>
 </div>
 </main>
