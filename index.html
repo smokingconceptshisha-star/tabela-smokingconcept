@@ -295,7 +295,37 @@
     transition: none;
   }
 }
+#backToTop {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #C49A45;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+    display: none;
+    z-index: 999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
+}
 
+#backToTop:hover {
+    background: #8B642B;
+    transform: translateY(-5px);
+}
+
+.logo-link {
+    display: inline-block;
+    cursor: pointer;
+}
+
+html {
+    scroll-behavior: smooth;
+}
 :root{--bg:#f8f0df;--panel:#fff9ed;--gold:#8a5a2b;--gold2:#3e210f;--cream:#3e210f;--muted:#765a42;--line:rgba(104,65,31,.35);--olive:#78862b}
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(ellipse at top,#fff9ec 0,#f8f0df 60%,#eee0c4 100%);color:var(--cream);font-family:Inter,Arial,sans-serif;line-height:1.55}
@@ -338,6 +368,10 @@ h2{font-family:Georgia,serif;text-transform:uppercase;letter-spacing:.13em;text-
 </style>
 </head>
 <body>
+  <body id="inicio">
+  <a href="#inicio" class="logo-link" aria-label="Voltar à página inicial">
+    <img src="LOGOTIPO.png" alt="Smoking Concept">
+</a>
 <main class="page">
 <div class="content">
 <header class="brand">
@@ -488,5 +522,26 @@ function copyIBAN(){
  }else{window.prompt('Copie o IBAN:',iban);}
 }
 </script>
+ <script>
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", function () {
+    if (window.scrollY > 300) {
+        backToTop.style.display = "block";
+    } else {
+        backToTop.style.display = "none";
+    }
+});
+
+backToTop.addEventListener("click", function () {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>   
+    <button id="backToTop" title="Voltar ao topo" aria-label="Voltar ao topo">
+    ↑
+</button>
 </body>
 </html>
